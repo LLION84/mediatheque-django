@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head><meta charset="UTF-8"><title>Retour</title></head>
+<body>
+
+<h1>Rentrer un emprunt</h1>
+
+<p>Confirmer le retour de « {{ emprunt.media }} » par {{ emprunt.membre }} ?</p>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Oui, rentrer</button>
+</form>
+
+<a href="{% url 'liste_emprunts' %}">Annuler</a>
+
+</body>
+</html>

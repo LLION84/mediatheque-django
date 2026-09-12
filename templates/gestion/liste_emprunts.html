@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Emprunts</title>
+    <style>
+        table, th, td { border: 1px solid black; border-collapse: collapse; padding: 5px; }
+    </style>
+</head>
+<body>
+
+<h1>Emprunts en cours</h1>
+
+<p>
+    <a href="{% url 'creer_emprunt' %}">+ Nouvel emprunt</a> |
+    <a href="{% url 'liste_medias_gestion' %}">Les médias</a> |
+    <a href="{% url 'liste_membres' %}">Les membres</a>
+</p>
+
+<table>
+    <tr>
+        <th>Membre</th>
+        <th>Média</th>
+        <th>Emprunté le</th>
+        <th>À rendre avant</th>
+        <th>État</th>
+        <th>Action</th>
+    </tr>
+    {% for emprunt in emprunts %}
+    <tr>
+        <td>{{ emprunt.membre }}</td>
+        <td>{{ emprunt.media }}</td>
+        <td>{{ emprunt.date_emprunt }}</td>
+        <td>{{ emprunt.date_limite }}</td>
+        <td>{% if emprunt.est_en_retard %}EN RETARD{% else %}Dans les temps{% endif %}</td>
+        <td><a href="{% url 'rentrer_emprunt' emprunt.id %}">Rentrer</a></td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="6">Aucun emprunt en cours</td></tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>

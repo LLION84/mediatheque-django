@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Médias</title>
+    <style>
+        table, th, td { border: 1px solid black; border-collapse: collapse; padding: 5px; }
+    </style>
+</head>
+<body>
+
+<h1>Les médias de la médiathèque</h1>
+<p>
+    Ajouter :
+    <a href="{% url 'ajouter_media' 'livre' %}">un livre</a> |
+    <a href="{% url 'ajouter_media' 'dvd' %}">un DVD</a> |
+    <a href="{% url 'ajouter_media' 'cd' %}">un CD</a> |
+    <a href="{% url 'ajouter_media' 'jeu' %}">un jeu de plateau</a>
+</p>
+
+<a href="{% url 'liste_membres' %}">Voir les membres</a>
+
+<h2>Médias empruntables</h2>
+<table>
+    <tr><th>Titre</th><th>Disponible</th></tr>
+    {% for media in medias %}
+    <tr>
+        <td>{{ media.titre }}</td>
+        <td>{% if media.disponible %}Oui{% else %}Non{% endif %}</td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="2">Aucun média</td></tr>
+    {% endfor %}
+</table>
+
+<h2>Jeux de plateau</h2>
+<table>
+    <tr><th>Titre</th><th>Créateur</th></tr>
+    {% for jeu in jeux %}
+    <tr>
+        <td>{{ jeu.titre }}</td>
+        <td>{{ jeu.createur }}</td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="2">Aucun jeu</td></tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>

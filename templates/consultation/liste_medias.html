@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Médiathèque - Catalogue</title>
+</head>
+<body>
+
+<h1>Catalogue de la médiathèque</h1>
+
+<h2>Médias empruntables</h2>
+<table border="1">
+    <tr>
+        <th>Titre</th>
+        <th>Disponible</th>
+    </tr>
+    {% for media in medias %}
+    <tr>
+        <td>{{ media.titre }}</td>
+        <td>{% if media.disponible %}Oui{% else %}Non{% endif %}</td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="2">Aucun média</td></tr>
+    {% endfor %}
+</table>
+
+<h2>Jeux de plateau (consultation sur place uniquement)</h2>
+<ul>
+    {% for jeu in jeux %}
+    <li>{{ jeu.titre }} - {{ jeu.createur }}</li>
+    {% empty %}
+    <li>Aucun jeu</li>
+    {% endfor %}
+</ul>
+
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head><meta charset="UTF-8"><title>Ajouter un média</title></head>
+<body>
+
+<h1>Ajouter : {{ type_media }}</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Enregistrer</button>
+</form>
+
+<a href="{% url 'liste_medias_gestion' %}">Retour</a>
+
+</body>
+</html>
